@@ -18,7 +18,12 @@ const getSingleProduct = async (id: string) => {
 }
 
 const updateProduct = async (id: string, data: IProduct) => {
-    const result = await Product.findByIdAndUpdate(id, data, { new: true })
+    const result = await Product.findByIdAndUpdate(id, data, { new: true, updatedAt: new Date() })
+    return result
+}
+
+const deleteProduct = async (id: string) => {
+    const result = await Product.findByIdAndDelete(id)
     return result
 }
 
@@ -27,5 +32,6 @@ export const productService = {
     createProduct,
     getProduct,
     getSingleProduct,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }
