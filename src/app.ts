@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use('/api/product', useRouter)
 
+
 app.get('/', (req: Request, res: Response) => {
     res.send({
         status: true,

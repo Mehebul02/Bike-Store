@@ -3,6 +3,8 @@ import { productController } from "./product.controller";
 
 const useRouter = Router()
 
-useRouter.post('/create-product',productController.createProduct)
+useRouter.post('/create-product', productController.createProduct)
+useRouter.get('/', productController.getProduct)
+useRouter.get('/:productId', productController.getSingleProduct)
 
 export default useRouter
