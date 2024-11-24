@@ -54,7 +54,27 @@ const getSingleProduct = async (req: Request, res: Response) => {
             data: result
         })
     }
-    catch(error){
+    catch (error) {
+        res.json({
+            status: false,
+            message: "Something went wrong",
+            error
+        })
+    }
+}
+
+const updateProduct = async (req: Request, res: Response) => {
+    try {
+        const productId = req.params.productId,
+        const body = req.body
+        const result = await productService.updateProduct(productId, body)
+        res.json({
+            status: true,
+            message: "Bike updated successfully",
+            data: result
+        })
+    }
+    catch (error) {
         res.json({
             status: false,
             message: "Something went wrong",
@@ -67,5 +87,6 @@ const getSingleProduct = async (req: Request, res: Response) => {
 export const productController = {
     createProduct,
     getProduct,
-    getSingleProduct
+    getSingleProduct,
+    updateProduct
 }
