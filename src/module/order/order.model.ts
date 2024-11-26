@@ -8,6 +8,6 @@ const OderSchema = new Schema({
 }, { timestamps: true });
 
 
-const Oder = model("Oder", OderSchema)
+const Order = model("Oder", OderSchema)
 
-export default Oder
+export default Order
