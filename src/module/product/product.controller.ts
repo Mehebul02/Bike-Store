@@ -65,7 +65,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
 
 const updateProduct = async (req: Request, res: Response) => {
     try {
-        const productId = req.params.productId,
+        const productId = req.params.productId
         const body = req.body
         const result = await productService.updateProduct(productId, body)
         res.json({
