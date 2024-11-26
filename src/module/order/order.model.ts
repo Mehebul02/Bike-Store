@@ -10,4 +10,4 @@ const OderSchema = new Schema({
 
 const Oder = model("Oder", OderSchema)
 
-export Oder
+export default Oder
