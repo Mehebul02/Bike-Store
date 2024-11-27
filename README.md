@@ -33,15 +33,15 @@ Git
 
 Method	Endpoint	Description
 
-GET	/api/products	Retrieve all bikes
+GET	/api/products	             Retrieve all bikes
 
-POST	/api/products	Add a new bike
+POST	/api/products	             Add a new bike
 
 
  --Order Endpoints--------
 
 Method	Endpoint	Description
 
-POST	/api/orders	Create a new order
+POST	/api/orders	                  Create a new order
 
-GET	/api/orders/revenue	Calculate total revenue
+GET	/api/orders/revenue	      Calculate total revenue
