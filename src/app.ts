@@ -1,9 +1,6 @@
-
-
 import express, { Request, Response } from 'express'
-import useRouter from './module/product/product.router'
 import cors from "cors";
-import orderRoute from './module/order/order.router';
+import router from './utils';
 
 const app = express()
 
@@ -11,8 +8,10 @@ const app = express()
 app.use(express.json())
 app.use(cors());
 
-app.use('/api/product', useRouter)
-app.use('/api/order', orderRoute)
+// app.use('/api/product', useRouter)
+// app.use('/api/order', orderRoute)
+
+app.use('/api/v1', router);
 
 
 app.get('/', (req: Request, res: Response) => {
