@@ -1,28 +1,23 @@
+import { httpStatus } from 'http-status';
 import { Request, Response } from "express";
 import { productService } from "./product.service";
+import sendResponse from "../../utils/sendResponse";
+import catchAsync from "../../utils/catchAsync";
 
 
-const createProduct = async (req: Request, res: Response) => {
-
-    try {
-        const payload = req.body
-        const result = await productService.createProduct(payload)
-        res.json({
-            success: true,
-            message: "Bike created successfully",
-            data: result
-        })
-    }
-    catch (error) {
-        res.json({
-            status: false,
-            message: "Validation failed",
-            error
-        })
-    }
 
 
-}
+const createProduct = catchAsync(async(req,res)=>{
+    const payload = req.body
+   const result = await productService.createProduct(payload)
+   sendResponse(res,{
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Bike created successfully',
+    data: result,
+   })
+
+})
 
 
 const getProduct = async (req: Request, res: Response) => {

@@ -54,20 +54,20 @@ const productSchema = new Schema({
     },
     inStock: { type: Boolean, required: true },
     images: { type: [String], default: [] },
-    ratings: {
-        type: Number,
-        min: [0, "Rating must be at least 0"],
-        max: [5, "Rating must be at most 5"],
-        default: 0
-    },
-    reviews: [
-        {
-            user: { type: Schema.Types.ObjectId, ref: "User" },
-            comment: String,
-            rating: { type: Number, min: 0, max: 5 },
-            createdAt: { type: Date, default: Date.now }
-        }
-    ],
+    // ratings: {
+    //     type: Number,
+    //     min: [0, "Rating must be at least 0"],
+    //     max: [5, "Rating must be at most 5"],
+    //     default: 0
+    // },
+    // reviews: [
+    //     {
+    //         user: { type: Schema.Types.ObjectId, ref: "User" },
+    //         comment: String,
+    //         rating: { type: Number, min: 0, max: 5 },
+    //         createdAt: { type: Date, default: Date.now }
+    //     }
+    // ],
     slug: { type: String, unique: true },
     tags: { type: [String], default: [] }
 }, {
