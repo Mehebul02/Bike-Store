@@ -45,7 +45,7 @@ const productSchema = new Schema({
             message: "Discount price must be lower than actual price",
         },
     },
-    category: { type: String, enum: ["Mountain", "Road", "Hybrid", "Electric"], required: true },
+    category: { type: String, required: true },
     description: { type: String, required: [true, "Description is required"] },
     quantity: {
         type: Number,

@@ -3,15 +3,13 @@ import Product from "./product.model";
 
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
-  
 
     try {
-         const result = await Product.create(payload)
+        const result = await Product.create(payload)
         return result;
     } catch (error) {
-        // Handle validation errors & DB errors
-        console.error("Error creating product:", error);
-        throw new Error("Product creation failed"); // Customize error message
+        console.log(error);
+        throw new Error("Product creation failed"); 
     }
 }
 

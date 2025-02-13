@@ -1,4 +1,4 @@
-import { httpStatus } from 'http-status';
+import  httpStatus  from 'http-status';
 import { Request, Response } from "express";
 import { productService } from "./product.service";
 import sendResponse from "../../utils/sendResponse";
