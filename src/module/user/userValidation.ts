@@ -10,7 +10,7 @@ const userValidationSchema = z.object({
         required_error: "Email must be provided and must be a string",
     }).email(),
 
-    pasword: z
+    password: z
     .string({
       required_error: 'Password is required for your safety',
     })
