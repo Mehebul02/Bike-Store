@@ -2,11 +2,11 @@ import httpStatus from 'http-status';
 import { IUser } from './user.interface'
 import { User } from './user.model';
 import AppError from '../../app/errors/AppError';
-import IAdmin from '../product/admin/admin.interface';
+import IAdmin from '../admin/admin.interface';
 import config from '../../config';
 import mongoose from 'mongoose';
 import { generateAdminId } from './user.constants';
-import { Admin } from '../product/admin/admin.model';
+import { Admin } from '../admin/admin.model';
 
 const createUser = async (payload: IUser): Promise<IUser> => {
   payload.role = 'admin';

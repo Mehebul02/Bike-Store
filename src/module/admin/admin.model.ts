@@ -40,12 +40,12 @@ const adminSchema = new Schema<IAdmin>({
         required: true,
     },
 },
-{
-    toJSON: {
-      virtuals: true,
-    },
-  },)
+    {
+        toJSON: {
+            virtuals: true,
+        },
+    },)
 
 
 
-  export const Admin = model<IAdmin>('Admin', adminSchema);
+export const Admin = model<IAdmin>('Admin', adminSchema);

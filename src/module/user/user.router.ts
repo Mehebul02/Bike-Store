@@ -4,15 +4,11 @@ import { UserValidation } from "./userValidation";
 import { userController } from "./user.controller";
 import { USER_ROLE } from "./user.constants";
 import auth from "../../app/middleWares/auth";
-import { createAdminValidationSchema } from "../product/admin/admin.validation";
-
-
+import { createAdminValidationSchema } from "../admin/admin.validation";
 
 const router = Router()
 
-router.post(
-    '/create-admin',
-    auth(USER_ROLE.user, USER_ROLE.admin),
+router.post('/create-admin',auth(USER_ROLE.user, USER_ROLE.admin),
     // upload.single('file'),
     (req: Request, res: Response, next: NextFunction) => {
       req.body = JSON.parse(req.body.data);

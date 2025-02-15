@@ -1,8 +1,11 @@
+import QueryBuilder from "../../app/builder/QueryBuilder";
+import { productSearchableFields } from "./product.constants";
 import IProduct from "./product.interface";
 import Product from "./product.model";
 
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
+
 
     try {
         const result = await Product.create(payload)
@@ -13,9 +16,30 @@ const createProduct = async (payload: IProduct): Promise<IProduct> => {
     }
 }
 
-const getProduct = async () => {
-    const result = await Product.find()
-    return result
+const sanitizeQuery = (query: Record<string, unknown>) => {
+    Object.keys(query).forEach((key) => {
+      if (typeof query[key] === 'string') {
+        // Remove newline characters and trim extra spaces
+        query[key] = query[key].replace(/\n/g, '').trim();
+      }
+    });
+  }
+
+const getProduct = async (query: Record<string, unknown>) => {
+    sanitizeQuery(query)
+    console.log("All product", query);
+
+    const productQuery =new QueryBuilder(Product.find(), query)
+    .search(productSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+    const meta = await  productQuery.countTotal()
+    const result = await productQuery.modelQuery
+    return {meta,result}
+
+   
 }
 
 const getSingleProduct = async (id: string) => {

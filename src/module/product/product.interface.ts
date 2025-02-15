@@ -7,6 +7,6 @@ interface IProduct {
     description: string;
     quantity: number;
     inStock: boolean;
-}
+} 
 
 export default IProduct

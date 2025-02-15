@@ -36,15 +36,16 @@ const productSchema = new Schema({
         required: [true, "Price is required"],
         min: [0, 'Price must be a positive number']
     },
-    discountPrice: {
-        type: Number,
-        validate: {
-            validator: function (value) {
-                return value < this.price;
-            },
-            message: "Discount price must be lower than actual price",
-        },
-    },
+    // discountPrice: {
+    //     type: Number,
+    //     validate: {
+    //         validator: function (value: number) {
+    //             return value < this.price; // ✅ Normal function হওয়ায় "this" কাজ করবে
+    //         },
+    //         message: "Discount price must be lower than actual price",
+    //     },
+    // },
+    discountPrice:{type:Number, message: "Discount price must be lower than actual price"},
     category: { type: String, required: true },
     description: { type: String, required: [true, "Description is required"] },
     quantity: {
