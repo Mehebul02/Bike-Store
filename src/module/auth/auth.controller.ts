@@ -15,7 +15,7 @@ const register = catchAsync(async(req, res)=>{
 })
 const login = catchAsync(async(req ,res)=>{
     const result = await AuthService.login(req.body);
-
+    console.log( 'Token', result);
     sendResponse(res,{
         statusCode: httpStatus.ACCEPTED,
         success: true,
@@ -25,27 +25,27 @@ const login = catchAsync(async(req ,res)=>{
     })
 })
 
-const forgetPassword = catchAsync(async(req, res)=>{
-    const result = await AuthService.forgetPassword(req.body);
+// const forgetPassword = catchAsync(async(req, res)=>{
+//     const result = await AuthService.forgetPassword(req.body);
 
-    sendResponse(res,{
-        statusCode: httpStatus.ACCEPTED,
-        success: true,
-        message: "Password reset link sent to your email",
-        data: result
-    })
-})
+//     sendResponse(res,{
+//         statusCode: httpStatus.ACCEPTED,
+//         success: true,
+//         message: "Password reset link sent to your email",
+//         data: result
+//     })
+// })
 
-const resetPassword = catchAsync(async(req, res)=>{
-    const result = await AuthService.resetPassword(req.body);
+// const resetPassword = catchAsync(async(req, res)=>{
+//     const result = await AuthService.resetPassword(req.body);
 
-    sendResponse(res,{
-        statusCode: httpStatus.ACCEPTED,
-        success: true,
-        message: "password reset successfully",
-        data: result
-    })
-})
+//     sendResponse(res,{
+//         statusCode: httpStatus.ACCEPTED,
+//         success: true,
+//         message: "password reset successfully",
+//         data: result
+//     })
+// })
 
 
 
@@ -53,6 +53,6 @@ const resetPassword = catchAsync(async(req, res)=>{
 export const AuthControllers = {
     register,
     login,
-    forgetPassword,
-    resetPassword
+    // forgetPassword,
+    // resetPassword
 }

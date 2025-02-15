@@ -6,8 +6,9 @@ export interface IUser {
     password: string
     age: number
     photo?: string | null
-    role: 'user' | 'admin'
+    role: 'user' | 'admin',
     isDeleted: boolean;
+    token?: string;
 }
 
 
