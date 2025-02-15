@@ -33,12 +33,28 @@ const getProduct = catchAsync(async (req, res) => {
 
 })
 
-// const getProduct = async (req: Request, res: Response) => {
+
+const getSingleProduct = catchAsync(async(req,res)=>{
+    // const productId = req.params.productId
+    const {productId} = req.params
+        const result = await productService.getSingleProduct(productId)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Bikes are retrieved successfully',
+        data: result
+      });
+
+})
+
+
+// const getSingleProduct = async (req: Request, res: Response) => {
 //     try {
-//         const result = await productService.getProduct()
+//         const productId = req.params.productId
+//         const result = await productService.getSingleProduct(productId)
 //         res.json({
 //             status: true,
-//             message: "Bikes retrieved successfully",
+//             message: "Bike retrieved successfully",
 //             data: result
 //         })
 //     }
@@ -50,26 +66,6 @@ const getProduct = catchAsync(async (req, res) => {
 //         })
 //     }
 // }
-
-
-const getSingleProduct = async (req: Request, res: Response) => {
-    try {
-        const productId = req.params.productId
-        const result = await productService.getSingleProduct(productId)
-        res.json({
-            status: true,
-            message: "Bike retrieved successfully",
-            data: result
-        })
-    }
-    catch (error) {
-        res.json({
-            status: false,
-            message: "Something went wrong",
-            error
-        })
-    }
-}
 
 const updateProduct = async (req: Request, res: Response) => {
     try {

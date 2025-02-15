@@ -9,34 +9,19 @@ class QueryBuilder<T> {
     this.query = query;
   }
 
-  // search(searchableFields: string[]) {
-  //   const searchTerm = this?.query?.searchTerm;
-  //   if (searchTerm) {
-  //     this.modelQuery = this.modelQuery.find({
-  //       $or: searchableFields.map(
-  //         (field) =>
-  //           ({
-  //             [field]: { $regex: searchTerm, $options: 'i' },
-  //           }) as FilterQuery<T>,
-  //       ),
-  //     });
-  //   }
-
-  //   return this;
-  // }
-
   search(searchableFields: string[]) {
     const searchTerm = this?.query?.searchTerm;
     if (searchTerm) {
-      const sanitizedSearchTerm = searchTerm.replace(/\n/g, '').trim(); // Remove \n and extra spaces
       this.modelQuery = this.modelQuery.find({
         $or: searchableFields.map(
-          (field) => ({
-            [field]: { $regex: sanitizedSearchTerm, $options: 'i' },
-          }) as FilterQuery<T>,
+          (field) =>
+            ({
+              [field]: { $regex: searchTerm, $options: 'i' },
+            }) as FilterQuery<T>,
         ),
       });
     }
+
     return this;
   }
 

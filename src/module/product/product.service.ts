@@ -5,8 +5,6 @@ import Product from "./product.model";
 
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
-
-
     try {
         const result = await Product.create(payload)
         return result;
@@ -27,8 +25,7 @@ const sanitizeQuery = (query: Record<string, unknown>) => {
 
 const getProduct = async (query: Record<string, unknown>) => {
     sanitizeQuery(query)
-    console.log("All product", query);
-
+    // console.log("All product", query);
     const productQuery =new QueryBuilder(Product.find(), query)
     .search(productSearchableFields)
     .filter()
@@ -39,7 +36,6 @@ const getProduct = async (query: Record<string, unknown>) => {
     const result = await productQuery.modelQuery
     return {meta,result}
 
-   
 }
 
 const getSingleProduct = async (id: string) => {
