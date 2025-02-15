@@ -6,6 +6,7 @@ interface IProduct {
     category: string;
     description: string;
     quantity: number;
+    isDeleted:boolean;
     inStock: boolean;
 } 
 

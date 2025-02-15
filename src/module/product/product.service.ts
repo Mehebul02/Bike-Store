@@ -1,7 +1,10 @@
+import mongoose from "mongoose";
 import QueryBuilder from "../../app/builder/QueryBuilder";
 import { productSearchableFields } from "./product.constants";
 import IProduct from "./product.interface";
 import Product from "./product.model";
+import AppError from "../../app/errors/AppError";
+import httpStatus from "http-status";
 
 
 const createProduct = async (payload: IProduct): Promise<IProduct> => {
@@ -48,10 +51,35 @@ const updateProduct = async (id: string, data: IProduct) => {
     return result
 }
 
+// const deleteProduct = async (id: string) => {
+//     const result = await Product.findByIdAndDelete(id)
+//     return result
+// }
+
+
 const deleteProduct = async (id: string) => {
-    const result = await Product.findByIdAndDelete(id)
-    return result
-}
+    const session = await mongoose.startSession();
+    try {
+      session.startTransaction();
+  
+      const deletedProduct = await Product.findByIdAndUpdate(
+        id,
+        { isDeleted: true },
+        { new: true, session },
+      );
+  
+      if (!deletedProduct) {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete student');
+      }
+      await session.commitTransaction();
+      await session.endSession();
+      return deletedProduct;
+    } catch (err) {
+      await session.abortTransaction();
+      await session.endSession();
+      throw new Error('Failed to delete student');
+    }
+  };
 
 
 export const productService = {

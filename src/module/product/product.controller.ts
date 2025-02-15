@@ -1,11 +1,7 @@
 import httpStatus from 'http-status';
-import { Request, Response } from "express";
 import { productService } from "./product.service";
 import sendResponse from "../../utils/sendResponse";
 import catchAsync from "../../utils/catchAsync";
-
-
-
 
 const createProduct = catchAsync(async (req, res) => {
     const payload = req.body
@@ -59,24 +55,17 @@ const updateProduct = catchAsync(async(req,res)=>{
 })
 
 
-const deleteProduct = async (req: Request, res: Response) => {
-    try {
-        const productId = req.params.productId
-        const result = await productService.deleteProduct(productId)
-        res.json({
-            status: true,
-            message: "Bike deleted successfully",
-            data: result
-        })
-    }
-    catch (error) {
-        res.json({
-            status: false,
-            message: "Something went wrong",
-            error
-        })
-    }
-}
+const deleteProduct = catchAsync(async(req,res)=>{
+    const {productId} = req.params
+    const result = await productService.deleteProduct(productId)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Bikes deleted successfully',
+        data: result
+      });
+
+})
 
 
 export const productController = {

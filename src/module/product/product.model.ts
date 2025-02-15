@@ -54,6 +54,7 @@ const productSchema = new Schema({
         min: [1, "Quantity must be at least 1"]
     },
     inStock: { type: Boolean, required: true },
+    isDeleted: { type: Boolean, required: true },
     images: { type: [String], default: [] },
     // ratings: {
     //     type: Number,
