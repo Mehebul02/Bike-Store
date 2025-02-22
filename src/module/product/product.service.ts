@@ -34,7 +34,8 @@ const getProduct = async (query: Record<string, unknown>) => {
     .filter()
     .sort()
     .paginate()
-    .fields();
+    .fields()
+  
     const meta = await  productQuery.countTotal()
     const result = await productQuery.modelQuery
     return {meta,result}
